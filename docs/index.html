@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanQuote — Cleaning Quote &amp; Profit Calculator</title>
+  <meta name="description" content="Price cleaning jobs from labor, supplies, travel, overhead, and target margin. Try the free calculator and buy the editable workbook for $9 in Bitcoin.">
+  <meta property="og:title" content="CleanQuote — Every quote should know its profit">
+  <meta property="og:description" content="A $9 editable cleaning quote and profit workbook with five service presets, client quote, and job log.">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="https://yunczo.github.io/cleanquote-profit-toolkit/assets/CleanQuote_Listing_01_Calculator.png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/calculator.js"></script>
+  <script defer src="assets/order.js"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="#top" aria-label="CleanQuote home"><span>CQ</span> CleanQuote</a>
+    <nav aria-label="Main navigation">
+      <a href="#calculator">Free calculator</a>
+      <a href="#inside">What’s inside</a>
+      <a class="nav-cta" href="#order">Buy for $9</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow"><i></i> Pricing tool for cleaning businesses</p>
+        <h1>Every quote should know its <em>profit.</em></h1>
+        <p class="lede">Turn labor, supplies, travel, overhead, and your target margin into a confident client price—before you say yes to the job.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#calculator">Try the calculator</a>
+          <a class="text-link" href="#order">Get the workbook for $9 →</a>
+        </div>
+        <div class="trust-line">
+          <span><b>5</b> editable presets</span>
+          <span><b>1</b> client quote</span>
+          <span><b>50</b> job-log rows</span>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Example quote">
+        <div class="quote-paper">
+          <div class="paper-head"><div><small>QUOTE 0042</small><strong>Deep clean</strong></div><span>MODELLED</span></div>
+          <div class="paper-meta"><span>1,800 sq ft · One-time</span><span>2-person crew</span></div>
+          <div class="paper-total"><span>Recommended quote</span><strong id="hero-quote">$425</strong></div>
+          <div class="paper-grid"><div><small>Cost floor</small><b id="hero-floor">$264</b></div><div><small>Profit</small><b id="hero-profit">$161</b></div><div><small>Margin</small><b id="hero-margin">38%</b></div></div>
+          <p>Built from your assumptions, not a competitor’s price.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="wrap">
+        <p class="eyebrow inverse"><i></i> Free live estimate</p>
+        <h2>Know the number before the customer asks.</h2>
+        <p class="section-lede">This browser demo is a quick estimate. The paid workbook exposes every assumption and adds reusable quotes and job tracking.</p>
+        <div class="calculator-shell">
+          <form class="calculator-inputs" id="calculator-form">
+            <label>Service type
+              <select name="service">
+                <option value="standard">Standard clean</option>
+                <option value="deep" selected>Deep clean</option>
+                <option value="moveout">Move-out clean</option>
+                <option value="office">Office clean</option>
+                <option value="construction">Post-construction</option>
+              </select>
+            </label>
+            <label>Frequency
+              <select name="frequency"><option value="one-time">One-time</option><option value="weekly">Weekly</option><option value="biweekly">Every 2 weeks</option><option value="monthly">Monthly</option></select>
+            </label>
+            <label>Property size
+              <span class="number-input"><input name="squareFeet" type="number" min="300" max="20000" step="100" value="1800"><i>sq ft</i></span>
+            </label>
+            <label>Crew size
+              <span class="number-input"><input name="crewSize" type="number" min="1" max="12" value="2"><i>people</i></span>
+            </label>
+            <label>Labor cost / cleaner-hour
+              <span class="number-input"><i>$</i><input name="laborRate" type="number" min="8" max="100" value="22"></span>
+            </label>
+            <label>Target profit margin
+              <span class="range-row"><input name="targetMargin" type="range" min="10" max="60" value="35"><b id="margin-input-value">35%</b></span>
+            </label>
+            <fieldset>
+              <legend>Optional add-ons</legend>
+              <label class="check"><input type="checkbox" name="addon" value="35" checked> Inside oven <b>+$35</b></label>
+              <label class="check"><input type="checkbox" name="addon" value="35"> Inside fridge <b>+$35</b></label>
+              <label class="check"><input type="checkbox" name="addon" value="55"> Interior windows <b>+$55</b></label>
+            </fieldset>
+          </form>
+          <aside class="calculator-results" aria-live="polite">
+            <small>Recommended client quote</small>
+            <strong id="quote-result">$425</strong>
+            <p>Rounded up to a client-ready number</p>
+            <dl>
+              <div><dt>Cost floor</dt><dd id="floor-result">$264</dd></div>
+              <div><dt>Projected profit</dt><dd id="profit-result">+$161</dd></div>
+              <div><dt>Realized margin</dt><dd id="margin-result">38%</dd></div>
+              <div><dt>Total labor</dt><dd id="labor-result">7.3 hrs</dd></div>
+              <div><dt>On-site time</dt><dd id="time-result">3.7 hrs</dd></div>
+            </dl>
+            <a class="button button-lime" href="#order">Save every quote in the workbook</a>
+            <small>Educational estimate only. Validate local costs, taxes, and scope.</small>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="inside wrap" id="inside">
+      <div class="section-heading"><p class="eyebrow"><i></i> Inspect before buying</p><h2>One workbook. Every quote accounted for.</h2></div>
+      <div class="features">
+        <article><b>01</b><h3>Quote Calculator</h3><p>Cost floor, quote, profit, margin, effective hourly rate, and crew time.</p></article>
+        <article><b>02</b><h3>Service Presets</h3><p>Standard, deep, move-out, office, and post-construction assumptions.</p></article>
+        <article><b>03</b><h3>Client Quote</h3><p>A printable estimate that keeps your internal pricing math private.</p></article>
+        <article><b>04</b><h3>Job Log</h3><p>Compare quoted work with actual results across 50 reusable rows.</p></article>
+      </div>
+      <div class="screenshots">
+        <figure><img src="assets/CleanQuote_Listing_01_Calculator.png" alt="CleanQuote calculator workbook preview" loading="lazy"><figcaption>Editable quote calculator</figcaption></figure>
+        <figure><img src="assets/CleanQuote_Listing_02_Client_Quote.png" alt="CleanQuote printable client quote preview" loading="lazy"><figcaption>Printable client quote</figcaption></figure>
+        <figure><img src="assets/CleanQuote_Listing_04_Job_Log.png" alt="CleanQuote job log preview" loading="lazy"><figcaption>Actual-versus-quoted job log</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="order-section" id="order">
+      <div class="wrap order-grid">
+        <div class="order-copy">
+          <p class="eyebrow inverse"><i></i> No-account encrypted checkout</p>
+          <h2>CleanQuote Profit Toolkit</h2>
+          <div class="price"><strong>$9</strong><span>USD equivalent in Bitcoin</span></div>
+          <p>Send an encrypted order request first. A signed reply will confirm the exact BTC amount, address, and quote expiry. Pay only after that reply.</p>
+          <ol>
+            <li><b>1</b><span>Request a signed quote. No login or email is required.</span></li>
+            <li><b>2</b><span>Send the transaction ID in the same encrypted form after paying.</span></li>
+            <li><b>3</b><span>After one confirmation, the browser inbox assembles and verifies your private ZIP.</span></li>
+          </ol>
+          <p class="fine">Delivery target: within 24 hours of one blockchain confirmation. Keep this browser’s storage until download. Do not send customer data, payment keys, seed phrases, or other secrets.</p>
+        </div>
+        <div class="order-panel">
+          <div class="ticket-label">Your private order ticket</div>
+          <code id="order-ticket-id">Generating…</code>
+          <form id="cleanquote-order-form">
+            <label for="order-details">Order message or payment follow-up</label>
+            <textarea id="order-details" name="details" required maxlength="2000" placeholder="Start with: Please send the current $9 BTC quote. After payment, use this same form to send the transaction ID."></textarea>
+            <label class="guard"><input type="checkbox" name="private-safe" required> I included no customer data, wallet keys, seed phrase, or payment credentials.</label>
+            <label class="guard"><input type="checkbox" name="terms" required> I understand this is a spreadsheet tool, not accounting, tax, legal, or profit advice.</label>
+            <button class="button button-dark" type="submit">Send encrypted request</button>
+          </form>
+          <div class="order-actions"><button class="text-button" id="order-refresh" type="button">Check signed replies</button></div>
+          <div class="order-status" id="order-status">Nothing is charged by this form.</div>
+          <div class="order-replies" id="order-replies" hidden></div>
+          <div class="order-download" id="order-download" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="terms wrap" id="terms">
+      <div><p class="eyebrow"><i></i> Clear boundaries</p><h2>Know what you’re buying.</h2></div>
+      <div class="terms-list">
+        <details open><summary>What is delivered?</summary><p>A ZIP containing the tested `.xlsx` workbook, a one-page PDF guide, a read-me, and the single-business license. The workbook is designed for current desktop Excel. It may import into Google Sheets, but formatting and feature parity are not guaranteed.</p></details>
+        <details><summary>Can I resell or share it?</summary><p>No. One purchase licenses one business to use and modify the workbook internally and to generate client quotes. The workbook itself may not be resold, sublicensed, posted, or redistributed.</p></details>
+        <details><summary>What is the refund policy?</summary><p>If delivery does not arrive within 24 hours after one confirmation, or the verified ZIP is unusable and a replacement cannot be supplied, request a refund within seven days. Mandatory local consumer rights always override this policy.</p></details>
+        <details><summary>Does it guarantee profit?</summary><p>No. The workbook makes the consequences of your assumptions visible. You remain responsible for local wages, taxes, insurance, scope, market conditions, and every final price.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span class="brand"><span>CQ</span> CleanQuote</span><p>Price the work. Protect the profit.</p><a href="#top">Back to top ↑</a></div></footer>
+</body>
+</html>

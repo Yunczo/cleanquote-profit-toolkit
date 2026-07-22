@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yunczo.github.io/cleanquote-profit-toolkit/sitemap.xml
