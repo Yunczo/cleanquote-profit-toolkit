@@ -28,3 +28,17 @@ test("order client pins the seller key and verifies delivered bytes", async () =
   assert.match(source, /SHA-256/);
   assert.match(source, /actualHash !== first\.sha256/);
 });
+
+test("storefront publishes and links the cost-first pricing guide", async () => {
+  const [home, guide, sitemap] = await Promise.all([
+    readFile(new URL("docs/index.html", root), "utf8"),
+    readFile(new URL("docs/guides/how-to-price-a-cleaning-job.html", root), "utf8"),
+    readFile(new URL("docs/sitemap.xml", root), "utf8"),
+  ]);
+  const guidePath = "guides/how-to-price-a-cleaning-job.html";
+  assert.match(home, new RegExp(guidePath.replaceAll(".", "\\.")));
+  assert.match(sitemap, /cleanquote-profit-toolkit\/guides\/how-to-price-a-cleaning-job\.html/);
+  assert.match(guide, /P = C ÷ \(1 − m\)/);
+  assert.match(guide, /Margin is not markup/);
+  assert.match(guide, /does not guarantee profit/i);
+});
