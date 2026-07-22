@@ -111,9 +111,15 @@ dd { margin: 0; font: 700 11px/1 ui-monospace, monospace; }
 .ticket-passphrase input[aria-invalid="true"] { border-color: var(--coral); }
 .ticket-warning { margin: 10px 0 20px; color: #8a3d2b; font-size: 10px; line-height: 1.55; }
 #cleanquote-order-form { display: grid; gap: 14px; }
-#cleanquote-order-form > label:first-child { font-size: 12px; font-weight: 750; }
+.order-mode { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; padding: 0; border: 0; }
+.order-mode legend { grid-column: 1 / -1; margin-bottom: 3px; color: var(--ink); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.order-mode label { display: flex; align-items: center; gap: 7px; min-height: 42px; padding: 9px 10px; border: 1px solid var(--line); color: var(--ink); background: var(--paper); font-size: 10px; font-weight: 700; cursor: pointer; }
+.order-mode label:has(input:checked) { border-color: var(--ink); background: var(--lime); box-shadow: 3px 3px 0 var(--deep); }
+#order-mode-help { margin: -4px 0 0; color: var(--muted); }
+#order-details-label { font-size: 12px; font-weight: 750; }
 textarea { min-height: 118px; resize: vertical; padding: 12px; border: 1px solid var(--line); color: var(--ink); line-height: 1.5; }
 .payment-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.payment-fields[hidden] { display: none; }
 .payment-fields label { display: grid; gap: 7px; color: var(--ink); font-size: 10px; font-weight: 700; }
 .payment-fields small { color: var(--muted); font-size: 9px; font-weight: 500; }
 .guard { display: flex; align-items: flex-start; gap: 9px; color: var(--muted); font-size: 10px; line-height: 1.5; }
@@ -167,6 +173,7 @@ footer a { text-transform: uppercase; letter-spacing: .08em; font: 650 9px/1 ui-
   .features, .screenshots { grid-template-columns: 1fr; }
   .features article { border-right: 0; border-bottom: 1px solid var(--line); }
   .order-panel { padding: 24px 19px; }
+  .order-mode { grid-template-columns: 1fr; }
   .payment-fields { grid-template-columns: 1fr; }
   footer .wrap { flex-direction: column; gap: 15px; }
 }

@@ -161,9 +161,15 @@
           </label>
           <p class="ticket-warning">There is no account recovery. The browser stores an encrypted ticket backup and encrypted quote commitments, plus request/receipt retry timestamps and non-reversible receipt fingerprints—never plaintext quote IDs or transaction IDs. Forgetting this passphrase or clearing the backup permanently loses access to replies and delivery. Encrypted ciphertext and relay metadata can persist on public relays, while the quoted address, amount, and transaction are public on Bitcoin. Keep the ticket and passphrase until the verified ZIP is downloaded.</p>
           <form id="cleanquote-order-form">
-            <label for="order-details">Order message or payment follow-up</label>
-            <textarea id="order-details" name="details" required maxlength="2000" placeholder="Start with: Please send the current $9 BTC quote. After payment, enter both the signed quote ID and transaction ID below."></textarea>
-            <div class="payment-fields">
+            <fieldset class="order-mode" aria-describedby="order-mode-help">
+              <legend>What are you sending?</legend>
+              <label><input type="radio" name="orderMode" value="quote" checked> New quote request</label>
+              <label><input type="radio" name="orderMode" value="payment"> Payment follow-up</label>
+            </fieldset>
+            <p class="fine" id="order-mode-help">First time here? Request the signed quote. Payment fields appear only after you choose payment follow-up.</p>
+            <label id="order-details-label" for="order-details">Quote request message</label>
+            <textarea id="order-details" name="details" required maxlength="2000" placeholder="Please send the current $9 BTC quote for the CleanQuote workbook."></textarea>
+            <div class="payment-fields" id="payment-fields" hidden>
               <label for="order-quote-id">Signed quote ID <small>Payment follow-up only</small>
                 <input id="order-quote-id" name="quoteId" type="text" inputmode="text" autocomplete="off" spellcheck="false" pattern="cq-[0-9a-f]{32}" placeholder="cq-…">
               </label>
@@ -174,7 +180,7 @@
             <label class="guard"><input type="checkbox" name="private-safe" required> I included no customer data, wallet keys, seed phrase, or payment credentials.</label>
             <label class="guard"><input type="checkbox" name="terms" required> I understand this is a spreadsheet tool, not accounting, tax, legal, or profit advice.</label>
             <label class="guard"><input type="checkbox" name="business-only" required> I am acquiring this for a business or trade, not as a consumer.</label>
-            <button class="button button-dark" type="submit">Send encrypted request</button>
+            <button class="button button-dark" id="order-submit" type="submit">Request signed quote</button>
           </form>
           <div class="order-actions"><button class="text-button" id="order-refresh" type="button">Check signed replies</button><button class="text-button text-button-danger" id="order-clear-ticket" type="button">Clear encrypted ticket</button></div>
           <div class="order-status" id="order-status">Nothing is charged by this form.</div>

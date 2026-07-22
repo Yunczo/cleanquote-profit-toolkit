@@ -49,6 +49,9 @@ test("order ticket is encrypted at rest and payment references are structured", 
   assert.match(html, /public Nostr profile/);
   assert.match(html, /name="quoteId"/);
   assert.match(html, /name="txid"/);
+  assert.match(html, /name="orderMode" value="quote" checked/);
+  assert.match(html, /name="orderMode" value="payment"/);
+  assert.match(html, /id="payment-fields" hidden/);
   assert.match(html, /business or trade, not as a consumer/);
   assert.match(source, /PBKDF2/);
   assert.match(source, /AES-GCM/);
@@ -59,6 +62,9 @@ test("order ticket is encrypted at rest and payment references are structured", 
   assert.match(source, /action: quoteId \? "payment" : "quote_request"/);
   assert.match(source, /QUOTE_ID_PATTERN/);
   assert.match(source, /TXID_PATTERN/);
+  assert.match(source, /quoteIdInput\.disabled = !isPayment/);
+  assert.match(source, /txidInput\.required = isPayment/);
+  assert.match(source, /Choose payment follow-up before sending a quote ID or transaction ID/);
 });
 
 test("payment and delivery fail closed against authenticated quote commitments", async () => {

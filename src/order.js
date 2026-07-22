@@ -43,6 +43,13 @@ const refreshButton = document.querySelector("#order-refresh");
 const downloadBox = document.querySelector("#order-download");
 const passphraseInput = document.querySelector("#ticket-passphrase");
 const clearTicketButton = document.querySelector("#order-clear-ticket");
+const orderModeInputs = [...document.querySelectorAll('input[name="orderMode"]')];
+const detailsInput = document.querySelector("#order-details");
+const detailsLabel = document.querySelector("#order-details-label");
+const paymentFields = document.querySelector("#payment-fields");
+const quoteIdInput = document.querySelector("#order-quote-id");
+const txidInput = document.querySelector("#order-txid");
+const orderSubmitButton = document.querySelector("#order-submit");
 
 if (
   !orderForm ||
@@ -52,10 +59,40 @@ if (
   !refreshButton ||
   !downloadBox ||
   !passphraseInput ||
-  !clearTicketButton
+  !clearTicketButton ||
+  orderModeInputs.length !== 2 ||
+  !detailsInput ||
+  !detailsLabel ||
+  !paymentFields ||
+  !quoteIdInput ||
+  !txidInput ||
+  !orderSubmitButton
 ) {
   throw new Error("CleanQuote order markup is incomplete");
 }
+
+function selectedOrderMode() {
+  return orderModeInputs.find((input) => input.checked)?.value === "payment"
+    ? "payment"
+    : "quote";
+}
+
+function updateOrderMode() {
+  const isPayment = selectedOrderMode() === "payment";
+  paymentFields.hidden = !isPayment;
+  quoteIdInput.disabled = !isPayment;
+  txidInput.disabled = !isPayment;
+  quoteIdInput.required = isPayment;
+  txidInput.required = isPayment;
+  detailsLabel.textContent = isPayment ? "Payment follow-up message" : "Quote request message";
+  detailsInput.placeholder = isPayment
+    ? "I paid the signed quote. The exact quote ID and transaction ID are below."
+    : "Please send the current $9 BTC quote for the CleanQuote workbook.";
+  orderSubmitButton.textContent = isPayment ? "Send payment follow-up" : "Request signed quote";
+}
+
+orderModeInputs.forEach((input) => input.addEventListener("change", updateOrderMode));
+updateOrderMode();
 
 // Remove the legacy plaintext ticket format. There were no real buyer tickets
 // when v2 launched, so preserving it would only retain an origin-wide secret.
@@ -538,6 +575,7 @@ orderForm.addEventListener("submit", async (event) => {
   const submitButton = orderForm.querySelector("button[type='submit']");
   const formData = new FormData(orderForm);
   const details = String(formData.get("details") || "").trim();
+  const orderMode = selectedOrderMode();
 
   if (
     !details ||
@@ -568,6 +606,14 @@ orderForm.addEventListener("submit", async (event) => {
   }
   const quoteId = [...quoteIds][0];
   const txid = [...txids][0];
+  if (orderMode === "quote" && (quoteId || txid)) {
+    setStatus("Choose payment follow-up before sending a quote ID or transaction ID.", "error");
+    return;
+  }
+  if (orderMode === "payment" && (!quoteId || !txid)) {
+    setStatus("Payment follow-up requires both the signed quote ID and transaction ID.", "error");
+    return;
+  }
   if (Boolean(quoteId) !== Boolean(txid)) {
     setStatus("A payment follow-up requires both the exact quote ID and the 64-character transaction ID.", "error");
     return;
@@ -611,6 +657,7 @@ orderForm.addEventListener("submit", async (event) => {
       window.localStorage.setItem(SENT_AT_KEY, String(Math.floor(Date.now() / 1000)));
     }
     orderForm.reset();
+    updateOrderMode();
     setStatus(
       `Encrypted ${quoteId ? "payment follow-up" : "quote request"} sent through ${accepted} relay${accepted === 1 ? "" : "s"}. Keep the encrypted ticket and passphrase, then check for a signed reply within 24 hours.`,
       "success",
