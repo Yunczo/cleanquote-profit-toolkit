@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Free Cleaning Labor Cost &amp; Break-Even Rate Calculator | CleanQuote</title>
+  <meta name="description" content="Calculate loaded cleaning labor cost, overhead per billable cleaner-hour, break-even hourly rate, and a target-margin selling rate using your own business numbers.">
+  <link rel="canonical" href="https://yunczo.github.io/cleanquote-profit-toolkit/tools/cleaning-labor-cost-calculator.html">
+  <meta property="og:title" content="Free Cleaning Labor Cost &amp; Break-Even Rate Calculator">
+  <meta property="og:description" content="Turn wage, employer costs, non-billable time, overhead, and target margin into an auditable hourly cleaning rate.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yunczo.github.io/cleanquote-profit-toolkit/tools/cleaning-labor-cost-calculator.html">
+  <meta property="og:image" content="https://yunczo.github.io/cleanquote-profit-toolkit/assets/CleanQuote_Listing_01_Calculator.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="module" src="../assets/labor-cost-calculator.js"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="../index.html" aria-label="CleanQuote home"><span>CQ</span> CleanQuote</a>
+    <nav aria-label="Main navigation">
+      <a href="#calculator">Calculator</a>
+      <a href="#method">How it works</a>
+      <a href="../guides/how-to-price-a-cleaning-job.html">Pricing guide</a>
+      <a class="nav-cta" href="../index.html#order">Buy for $9</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow"><i></i> Free cleaning business calculator</p>
+        <h1>Find your real labor cost and <em>break-even rate.</em></h1>
+        <p class="lede">Start with an hourly wage, then account for employer-paid costs, non-billable paid time, and overhead. The result is a cost floor per billable cleaner-hour—not a guessed market rate.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#calculator">Calculate your rate</a>
+          <a class="text-link" href="#method">Audit the formula →</a>
+        </div>
+        <div class="trust-line">
+          <span><b>1</b> Load labor</span>
+          <span><b>2</b> Allocate overhead</span>
+          <span><b>3</b> Solve margin</span>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Illustrative hourly rate example">
+        <div class="quote-paper">
+          <div class="paper-head"><div><small>Worked from inputs</small><strong>Billable cleaner-hour</strong></div><span>LIVE</span></div>
+          <div class="paper-meta"><span>Your costs</span><span>Your target</span></div>
+          <div class="paper-total"><span>Target hourly rate</span><strong data-output="target-rate">$47.02</strong></div>
+          <div class="paper-grid"><div><small>Break-even</small><b data-output="break-even">$35.26</b></div><div><small>Planned profit</small><b data-output="profit-hour">$11.75</b></div></div>
+          <p>Illustrative defaults are not recommended wages, costs, margins, or client rates.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="wrap">
+        <p class="eyebrow inverse"><i></i> Free live estimate</p>
+        <h2>Build an hourly rate from your records.</h2>
+        <p class="section-lede">Use one currency consistently. Results are per billable cleaner-hour: two cleaners working three on-site hours produce six billable cleaner-hours.</p>
+        <div class="calculator-shell">
+          <form class="calculator-inputs" id="labor-rate-form">
+            <label>Base wage per paid hour
+              <span class="number-input"><i>$</i><input name="wage" type="number" min="0" max="500" step="0.25" value="20"></span>
+            </label>
+            <label>Employer-paid burden
+              <span class="number-input"><input name="burdenPercent" type="number" min="0" max="500" step="0.5" value="18"><i>% of wage</i></span>
+            </label>
+            <label>Non-billable paid time
+              <span class="number-input"><input name="nonBillablePercent" type="number" min="0" max="95" step="0.5" value="15"><i>% of paid time</i></span>
+            </label>
+            <label>Monthly business overhead
+              <span class="number-input"><i>$</i><input name="monthlyOverhead" type="number" min="0" max="1000000" step="25" value="1800"></span>
+            </label>
+            <label>Monthly billable cleaner-hours
+              <span class="number-input"><input name="monthlyBillableHours" type="number" min="1" max="100000" step="1" value="240"><i>hours</i></span>
+            </label>
+            <label>Target operating margin
+              <span class="number-input"><input name="targetMarginPercent" type="number" min="0" max="95" step="0.5" value="25"><i>%</i></span>
+            </label>
+          </form>
+          <aside class="calculator-results" aria-live="polite">
+            <small>Target selling rate per cleaner-hour</small>
+            <strong data-output="target-rate">$47.02</strong>
+            <p>Before taxes and job-specific costs</p>
+            <dl>
+              <div><dt>Loaded cost / paid hour</dt><dd data-output="loaded-wage">$23.60</dd></div>
+              <div><dt>Labor / billable hour</dt><dd data-output="productive-labor">$27.76</dd></div>
+              <div><dt>Overhead / billable hour</dt><dd data-output="overhead-hour">$7.50</dd></div>
+              <div><dt>Break-even hourly rate</dt><dd data-output="break-even">$35.26</dd></div>
+              <div><dt>Planned profit / hour</dt><dd data-output="profit-hour">$11.75</dd></div>
+            </dl>
+            <a class="button button-lime" href="../index.html#calculator">Price a complete cleaning job</a>
+            <small>Educational estimate only. Validate wages, employer obligations, billable capacity, overhead, tax, scope, and local rules.</small>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="inside wrap" id="method">
+      <div class="section-heading">
+        <p class="eyebrow"><i></i> Transparent method</p>
+        <h2>What each result means.</h2>
+      </div>
+      <div class="features">
+        <article><b>01</b><h3>Loaded paid hour</h3><p>Base wage × (1 + employer burden). Enter only employer-paid costs that scale with wages, and avoid counting the same cost again in overhead.</p></article>
+        <article><b>02</b><h3>Billable labor cost</h3><p>Loaded paid-hour cost ÷ (1 − non-billable share). Paid travel, setup, training, and admin time can make each billable hour consume more paid labor.</p></article>
+        <article><b>03</b><h3>Break-even rate</h3><p>Billable labor cost + monthly overhead ÷ monthly billable cleaner-hours. At this rate, the model has no planned operating profit.</p></article>
+        <article><b>04</b><h3>Target-margin rate</h3><p>Break-even rate ÷ (1 − target margin). Margin is a share of the selling rate, so adding the percentage directly would produce a smaller margin.</p></article>
+      </div>
+    </section>
+
+    <section class="terms wrap" id="inputs">
+      <div>
+        <p class="eyebrow"><i></i> Input checklist</p>
+        <h2>Use current business numbers.</h2>
+        <p class="lede">The calculator makes the math auditable, but it cannot tell whether an input is complete or suitable for your business.</p>
+      </div>
+      <div class="terms-list">
+        <details open><summary>What belongs in employer-paid burden?</summary><p>Use the employment costs your business actually owes in addition to base wage and that you intentionally model as a percentage of wage. The categories vary by business and location; verify them with current records and qualified local guidance.</p></details>
+        <details open><summary>What is non-billable paid time?</summary><p>It is paid time that cannot be billed directly as a cleaner-hour, such as some travel, setup, meetings, training, or administration. Estimate it from time records rather than using the default.</p></details>
+        <details open><summary>What belongs in monthly overhead?</summary><p>Include recurring business costs you want this model to allocate across billable cleaner-hours. Avoid double-counting costs already included in wage burden or charged directly to a job.</p></details>
+        <details open><summary>Is the target rate the final job price?</summary><p>No. A job quote may also need supplies, travel, job-specific fees, scope risk, taxes, minimum charges, and client-facing rounding. Use the complete job calculator to model those items.</p></details>
+        <details open><summary>Does this guarantee profit?</summary><p>No. Actual utilization, time, rework, cancellations, omitted costs, and scope changes can reduce or eliminate profit. This is an educational planning tool, not accounting, tax, legal, employment, or profit advice.</p></details>
+      </div>
+    </section>
+
+    <section class="order-section" id="next-step">
+      <div class="wrap order-grid">
+        <div class="order-copy">
+          <p class="eyebrow inverse"><i></i> Turn the rate into a job quote</p>
+          <h2>Keep the cost floor visible when scope changes.</h2>
+          <p>CleanQuote’s free job calculator combines cleaner-hours with supplies, travel, overhead, add-ons, and margin. The editable workbook adds reusable presets, a printable client quote, and an actual-versus-quoted job log.</p>
+          <div class="price"><strong>$9</strong><span>USD equivalent in Bitcoin</span></div>
+          <p class="fine">For business or trade buyers only. The workbook is a pricing tool, not accounting, tax, legal, employment, or profit advice, and it does not guarantee profit.</p>
+        </div>
+        <div class="order-panel">
+          <p class="eyebrow"><i></i> Choose your next step</p>
+          <h3>Estimate a job or inspect the workbook.</h3>
+          <p>The free job calculator runs in your browser. The encrypted order form does not charge you; it first requests a signed quote with the exact BTC amount, unique address, product checksum, and expiry.</p>
+          <dl>
+            <div><dt>Hourly cost model</dt><dd>Free on this page</dd></div>
+            <div><dt>Complete job estimate</dt><dd>Free browser tool</dd></div>
+            <div><dt>Editable workbook</dt><dd>$9 USD equivalent</dd></div>
+            <div><dt>Profit promise</dt><dd>None</dd></div>
+          </dl>
+          <div class="hero-actions">
+            <a class="button button-lime" href="../index.html#calculator">Try the job calculator</a>
+            <a class="text-link" href="../index.html#inside">Inspect the workbook →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="../index.html"><span>CQ</span> CleanQuote</a>
+      <p>Price the work. Protect the profit.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
