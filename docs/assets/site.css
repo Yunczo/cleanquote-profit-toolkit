@@ -79,6 +79,7 @@ dl div { display: flex; justify-content: space-between; padding: 12px 0; border-
 dt { color: var(--muted); }
 dd { margin: 0; font: 700 11px/1 ui-monospace, monospace; }
 .calculator-results .button { margin-top: auto; }
+.calculator-order-link { align-self: center; margin-top: 18px; text-align: center; }
 .calculator-results > small:last-child { margin-top: 13px; color: var(--muted); text-align: center; line-height: 1.45; }
 .inside { padding: 110px 0 120px; }
 .section-heading { display: grid; grid-template-columns: .8fr 1.2fr; align-items: end; margin-bottom: 55px; }

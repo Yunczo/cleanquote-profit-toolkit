@@ -13,7 +13,15 @@ test("storefront exposes a truthful order boundary", async () => {
   assert.match(html, /does not guarantee profit|Does it guarantee profit/i);
   assert.match(html, /Content-Security-Policy/);
   assert.match(html, /connect-src wss:\/\/relay\.damus\.io/);
+  assert.match(html, /href="#order">Request the \$9 signed BTC quote<\/a>/);
   assert.doesNotMatch(html, /instant download/i);
+});
+
+test("storefront reserves preview space so order deep links remain stable", async () => {
+  const html = await readFile(new URL("docs/index.html", root), "utf8");
+  assert.match(html, /CleanQuote_Listing_01_Calculator\.png"[^>]*width="1802" height="1044" loading="lazy"/);
+  assert.match(html, /CleanQuote_Listing_02_Client_Quote\.png"[^>]*width="1680" height="1031" loading="lazy"/);
+  assert.match(html, /CleanQuote_Listing_04_Job_Log\.png"[^>]*width="3165" height="2541" loading="lazy"/);
 });
 
 test("paid product is not published in the site tree", async () => {
@@ -128,6 +136,10 @@ test("storefront publishes a distinct labor-cost acquisition tool", async () => 
   assert.match(tool, /itemprop="offers" itemscope itemtype="https:\/\/schema\.org\/Offer"/);
   assert.match(tool, /itemprop="price" content="0"/);
   assert.equal((tool.match(/<dt>Labor \/ billable hour<\/dt>/g) || []).length, 1);
+  assert.match(
+    tool,
+    /Price a complete cleaning job<\/a>\s*<a class="text-link calculator-order-link" href="\.\.\/index\.html#order">Business buyer\? Request the \$9 signed BTC quote →<\/a>\s*<small>Educational estimate only\./,
+  );
   assert.doesNotMatch(tool, /CleanQuote_Product\.zip/);
   assert.match(source, /breakEvenRate \/ \(1 - margin\)/);
 });
