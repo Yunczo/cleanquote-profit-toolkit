@@ -10,6 +10,8 @@ test("storefront exposes a truthful order boundary", async () => {
   assert.match(html, /Pay only after that reply/);
   assert.match(html, /within 24 hours of one blockchain confirmation/);
   assert.match(html, /does not guarantee profit|Does it guarantee profit/i);
+  assert.match(html, /Content-Security-Policy/);
+  assert.match(html, /connect-src wss:\/\/relay\.damus\.io/);
   assert.doesNotMatch(html, /instant download/i);
 });
 
