@@ -6,6 +6,7 @@ const root = new URL("../", import.meta.url);
 
 test("storefront exposes a truthful order boundary", async () => {
   const html = await readFile(new URL("docs/index.html", root), "utf8");
+  assert.match(html, /assets\/cleanquote-icon\.svg/);
   assert.match(html, /\$9<\/strong><span>USD equivalent in Bitcoin/);
   assert.match(html, /Pay only after that reply/);
   assert.match(html, /within 24 hours of one blockchain confirmation/);

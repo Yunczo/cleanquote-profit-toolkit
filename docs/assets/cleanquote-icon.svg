@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">CleanQuote</title>
+  <desc id="description">CQ monogram in charcoal and lime</desc>
+  <rect width="512" height="512" rx="104" fill="#171710"/>
+  <rect x="44" y="44" width="424" height="424" rx="82" fill="#d8ff55"/>
+  <path fill="#171710" d="M225 139c-57 0-98 46-98 117s41 117 98 117c31 0 56-11 75-32l-31-38c-12 13-25 20-42 20-28 0-47-25-47-67s19-67 47-67c17 0 30 7 42 20l31-38c-19-21-44-32-75-32Z"/>
+  <path fill="#171710" d="M317 139c-57 0-98 46-98 117s41 117 98 117c8 0 16-1 23-3l26 34 43-31-25-32c20-21 31-50 31-85 0-71-41-117-98-117Zm0 50c28 0 47 25 47 67 0 17-3 31-9 42l-20-26-42 32 15 19c-22-5-38-29-38-67 0-42 19-67 47-67Z"/>
+</svg>
