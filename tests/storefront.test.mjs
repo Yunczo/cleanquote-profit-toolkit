@@ -123,6 +123,11 @@ test("storefront publishes a distinct labor-cost acquisition tool", async () => 
   assert.match(tool, /does not guarantee profit/i);
   assert.match(tool, /For business or trade buyers only/i);
   assert.match(tool, /assets\/cleaning-labor-cost-calculator-screenshot\.png/);
+  assert.match(tool, /itemtype="https:\/\/schema\.org\/WebApplication"/);
+  assert.match(tool, /itemprop="applicationCategory" content="BusinessApplication"/);
+  assert.match(tool, /itemprop="offers" itemscope itemtype="https:\/\/schema\.org\/Offer"/);
+  assert.match(tool, /itemprop="price" content="0"/);
+  assert.equal((tool.match(/<dt>Labor \/ billable hour<\/dt>/g) || []).length, 1);
   assert.doesNotMatch(tool, /CleanQuote_Product\.zip/);
   assert.match(source, /breakEvenRate \/ \(1 - margin\)/);
 });
