@@ -143,25 +143,38 @@
           <p class="eyebrow inverse"><i></i> No-account encrypted checkout</p>
           <h2>CleanQuote Profit Toolkit</h2>
           <div class="price"><strong>$9</strong><span>USD equivalent in Bitcoin</span></div>
-          <p>Send an encrypted order request first. A signed reply will confirm the exact BTC amount, address, and quote expiry. Pay only after that reply.</p>
+          <p>Business buyers can send an encrypted order request first. A signed reply will confirm a unique BTC address, the exact amount, product checksum, and quote expiry. Pay only after that reply.</p>
           <ol>
             <li><b>1</b><span>Request a signed quote. No login or email is required.</span></li>
             <li><b>2</b><span>Send the transaction ID in the same encrypted form after paying.</span></li>
             <li><b>3</b><span>After one confirmation, the browser inbox assembles and verifies your private ZIP.</span></li>
           </ol>
-          <p class="fine">Delivery target: within 24 hours of one blockchain confirmation. Keep this browser’s storage until download. Do not send customer data, payment keys, seed phrases, or other secrets.</p>
+          <p class="fine">Delivery target: within 24 hours of one blockchain confirmation. This checkout is for buyers acting for a business or trade; consumer orders are not accepted. Do not send customer data, payment keys, seed phrases, or other secrets.</p>
         </div>
         <div class="order-panel">
           <div class="ticket-label">Your private order ticket</div>
           <code id="order-ticket-id">Generating…</code>
+          <label class="ticket-passphrase" for="ticket-passphrase">Ticket passphrase
+            <input id="ticket-passphrase" type="password" minlength="12" maxlength="200" autocomplete="current-password" spellcheck="false" placeholder="At least 12 characters">
+          </label>
+          <p class="ticket-warning">There is no account recovery. The browser stores an encrypted ticket backup and encrypted quote commitments, plus request/receipt retry timestamps and non-reversible receipt fingerprints—never plaintext quote IDs or transaction IDs. Forgetting this passphrase or clearing the backup permanently loses access to replies and delivery. Encrypted ciphertext and relay metadata can persist on public relays, while the quoted address, amount, and transaction are public on Bitcoin. Keep the ticket and passphrase until the verified ZIP is downloaded.</p>
           <form id="cleanquote-order-form">
             <label for="order-details">Order message or payment follow-up</label>
-            <textarea id="order-details" name="details" required maxlength="2000" placeholder="Start with: Please send the current $9 BTC quote. After payment, use this same form to send the transaction ID."></textarea>
+            <textarea id="order-details" name="details" required maxlength="2000" placeholder="Start with: Please send the current $9 BTC quote. After payment, enter both the signed quote ID and transaction ID below."></textarea>
+            <div class="payment-fields">
+              <label for="order-quote-id">Signed quote ID <small>Payment follow-up only</small>
+                <input id="order-quote-id" name="quoteId" type="text" inputmode="text" autocomplete="off" spellcheck="false" pattern="cq-[0-9a-f]{32}" placeholder="cq-…">
+              </label>
+              <label for="order-txid">Bitcoin transaction ID <small>Payment follow-up only</small>
+                <input id="order-txid" name="txid" type="text" inputmode="text" autocomplete="off" spellcheck="false" pattern="[0-9A-Fa-f]{64}" placeholder="64 hexadecimal characters">
+              </label>
+            </div>
             <label class="guard"><input type="checkbox" name="private-safe" required> I included no customer data, wallet keys, seed phrase, or payment credentials.</label>
             <label class="guard"><input type="checkbox" name="terms" required> I understand this is a spreadsheet tool, not accounting, tax, legal, or profit advice.</label>
+            <label class="guard"><input type="checkbox" name="business-only" required> I am acquiring this for a business or trade, not as a consumer.</label>
             <button class="button button-dark" type="submit">Send encrypted request</button>
           </form>
-          <div class="order-actions"><button class="text-button" id="order-refresh" type="button">Check signed replies</button></div>
+          <div class="order-actions"><button class="text-button" id="order-refresh" type="button">Check signed replies</button><button class="text-button text-button-danger" id="order-clear-ticket" type="button">Clear encrypted ticket</button></div>
           <div class="order-status" id="order-status">Nothing is charged by this form.</div>
           <div class="order-replies" id="order-replies" hidden></div>
           <div class="order-download" id="order-download" hidden></div>
@@ -174,7 +187,8 @@
       <div class="terms-list">
         <details open><summary>What is delivered?</summary><p>A ZIP containing the tested `.xlsx` workbook, a one-page PDF guide, a read-me, and the single-business license. The workbook is designed for current desktop Excel. It may import into Google Sheets, but formatting and feature parity are not guaranteed.</p></details>
         <details><summary>Can I resell or share it?</summary><p>No. One purchase licenses one business to use and modify the workbook internally and to generate client quotes. The workbook itself may not be resold, sublicensed, posted, or redistributed.</p></details>
-        <details><summary>What is the refund policy?</summary><p>If delivery does not arrive within 24 hours after one confirmation, or the verified ZIP is unusable and a replacement cannot be supplied, request a refund within seven days. Mandatory local consumer rights always override this policy.</p></details>
+        <details><summary>Who can order?</summary><p>The direct checkout is offered only to customers acquiring the toolkit for a business or trade. Consumer orders are not accepted. If delivery does not arrive within 24 hours after one confirmation, or the verified ZIP is unusable and a replacement cannot be supplied, request a refund within seven days.</p></details>
+        <details><summary>How do I contact the seller?</summary><p>Yunczo Tools accepts signed pre-purchase and delivery-support messages through its <a href="https://njump.me/npub1x5pepckaedx3fgyq9nlkc88y0p5gw8t8r88lvh2we70v5x7zw63sxrrtak" rel="noreferrer">public Nostr profile</a>. The public <a href="https://github.com/Yunczo" rel="noreferrer">Yunczo GitHub profile</a> is an identity reference only; do not post order details, transaction IDs, or private information there.</p></details>
         <details><summary>Does it guarantee profit?</summary><p>No. The workbook makes the consequences of your assumptions visible. You remain responsible for local wages, taxes, insurance, scope, market conditions, and every final price.</p></details>
       </div>
     </section>

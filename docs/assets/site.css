@@ -106,13 +106,21 @@ dd { margin: 0; font: 700 11px/1 ui-monospace, monospace; }
 .order-panel { padding: 34px; border: 1px solid var(--ink); background: var(--white); color: var(--ink); box-shadow: 10px 10px 0 var(--deep); }
 .ticket-label { color: var(--muted); text-transform: uppercase; letter-spacing: .09em; font: 700 9px/1.4 ui-monospace, monospace; }
 #order-ticket-id { display: block; margin: 10px 0 26px; padding: 11px; overflow-wrap: anywhere; background: var(--pale); color: var(--teal); font-size: 10px; }
+.ticket-passphrase { display: grid; gap: 7px; color: var(--ink); font-size: 12px; font-weight: 750; }
+.ticket-passphrase input, .payment-fields input { width: 100%; min-height: 43px; padding: 10px 11px; border: 1px solid var(--line); color: var(--ink); background: var(--white); }
+.ticket-passphrase input[aria-invalid="true"] { border-color: var(--coral); }
+.ticket-warning { margin: 10px 0 20px; color: #8a3d2b; font-size: 10px; line-height: 1.55; }
 #cleanquote-order-form { display: grid; gap: 14px; }
 #cleanquote-order-form > label:first-child { font-size: 12px; font-weight: 750; }
 textarea { min-height: 118px; resize: vertical; padding: 12px; border: 1px solid var(--line); color: var(--ink); line-height: 1.5; }
+.payment-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.payment-fields label { display: grid; gap: 7px; color: var(--ink); font-size: 10px; font-weight: 700; }
+.payment-fields small { color: var(--muted); font-size: 9px; font-weight: 500; }
 .guard { display: flex; align-items: flex-start; gap: 9px; color: var(--muted); font-size: 10px; line-height: 1.5; }
 .guard input { margin-top: 2px; }
-.order-actions { margin-top: 18px; }
+.order-actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 18px; }
 .text-button { padding: 0 0 3px; border: 0; border-bottom: 1px solid var(--ink); background: none; color: var(--ink); font-size: 11px; font-weight: 800; cursor: pointer; }
+.text-button-danger { color: #8a3d2b; border-bottom-color: #8a3d2b; }
 .order-status { min-height: 48px; margin-top: 16px; padding: 12px; border-left: 3px solid var(--line); background: #f2f0e8; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .order-status[data-state="success"] { border-color: var(--teal); color: var(--teal); }
 .order-status[data-state="error"] { border-color: var(--coral); color: #8a3d2b; }
@@ -159,6 +167,7 @@ footer a { text-transform: uppercase; letter-spacing: .08em; font: 650 9px/1 ui-
   .features, .screenshots { grid-template-columns: 1fr; }
   .features article { border-right: 0; border-bottom: 1px solid var(--line); }
   .order-panel { padding: 24px 19px; }
+  .payment-fields { grid-template-columns: 1fr; }
   footer .wrap { flex-direction: column; gap: 15px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
